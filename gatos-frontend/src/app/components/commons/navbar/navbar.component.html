@@ -1,0 +1,42 @@
+<mat-toolbar color="primary" class="navbar">
+    <button mat-icon-button (click)="toggleMenu()" *ngIf="employeeLogged">
+        <i class="fa-duotone fa-solid fa-cat fa-xs" style="--fa-primary-color: #8f0045; --fa-secondary-color: #8f0045;"></i>
+    </button>
+
+    <span class="logo-prote" routerLink="/home">
+        <i class="fa-duotone fa-solid fa-shield-cat" style="--fa-primary-color: #8f0045; --fa-secondary-color: #8f0045;"></i>
+        Gatinos - Protectora Felina
+    </span>
+
+    <span class="spacer"></span>
+
+    <div class="navigation-buttons" *ngIf="employeeLogged">
+        <button mat-button routerLink="/home">
+            <i class="fa-duotone fa-solid fa-house-chimney fa-2xs" style="color: #8f0045;"></i>
+            Inicio
+        </button>
+        <button mat-button routerLink="/gatos">
+            <i class="fa-duotone fa-solid fa-house-chimney fa-2xs" style="color: #8f0045;"></i>
+            Conoce a nuestros gatos
+        </button>
+        <button mat-button routerLink="/empleados" *ngIf="isAdmin">
+            <i class="fa-solid fa-people fa-2xs" style="color: #8f0045;"></i>
+            Gestionar empleados
+        </button>
+        <button mat-button [matMenuTriggerFor]="employeeMenu">
+            <mat-icon>account_circle</mat-icon>
+            {{ employeeName }}
+        </button>
+
+        <mat-menu #employeeMenu="matMenu">
+            <button mat-menu-item routerLink="/perfil">
+                <mat-icon>person_heart</mat-icon>
+                Mi perfil
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>door_open</mat-icon>
+                Cerrar Sesión
+            </button>
+        </mat-menu>
+    </div>
+</mat-toolbar>
